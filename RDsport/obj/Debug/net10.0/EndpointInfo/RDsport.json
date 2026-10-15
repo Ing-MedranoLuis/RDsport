@@ -1,0 +1,2278 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "RDsport | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7115"
+    },
+    {
+      "url": "http://localhost:5022"
+    }
+  ],
+  "paths": {
+    "/api/AuhtController/Register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfUserDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfUserDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfUserDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AuhtController/Login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfLoginResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/players": {
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfIEnumerableOfPlayerDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfIEnumerableOfPlayerDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfIEnumerableOfPlayerDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Players"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "DominicanId": {
+                    "type": "string"
+                  },
+                  "ImageUrl": {
+                    "type": "string"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Position": {
+                    "type": "string"
+                  },
+                  "TeamId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "Image": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerCreateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerCreateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerCreateDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerCreateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerCreateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerCreateDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/players/{Id}": {
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Players"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "DominicanId": {
+                    "maxLength": 12,
+                    "minLength": 9,
+                    "type": "string"
+                  },
+                  "ImageUrl": {
+                    "type": "string"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Position": {
+                    "type": "string"
+                  },
+                  "TeamId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "Image": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerUpdateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerUpdateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerUpdateDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerUpdateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerUpdateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerUpdateDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Players"
+        ],
+        "operationId": "UpdateRandom",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "DominicanId": {
+                    "maxLength": 12,
+                    "minLength": 9,
+                    "type": "string"
+                  },
+                  "ImageUrl": {
+                    "type": "string"
+                  },
+                  "DateOfBirth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Position": {
+                    "type": "string"
+                  },
+                  "TeamId": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "type": [
+                      "integer",
+                      "string"
+                    ],
+                    "format": "int32"
+                  },
+                  "Image": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerPatchDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerPatchDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerPatchDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerPatchDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerPatchDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerPatchDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Players"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfPlayerDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Team": {
+      "get": {
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfIEnumerableOfTeamDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfIEnumerableOfTeamDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfIEnumerableOfTeamDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Teams"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "TeamName": {
+                    "type": "string"
+                  },
+                  "ImageUrl": {
+                    "type": "string"
+                  },
+                  "FieldAddress": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamCreateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamCreateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamCreateDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamCreateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamCreateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamCreateDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Team/{Id}": {
+      "get": {
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "TeamName": {
+                    "type": "string"
+                  },
+                  "ImageUrl": {
+                    "type": "string"
+                  },
+                  "FieldAddress": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamUpdateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamUpdateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamUpdateDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamUpdateDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamUpdateDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamUpdateDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Teams"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskOfActionResultOfTeamDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActionResult": {
+        "type": "object"
+      },
+      "ActionResultOfIEnumerableOfPlayerDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PlayerDTO"
+            }
+          }
+        }
+      },
+      "ActionResultOfIEnumerableOfTeamDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/TeamDTO"
+            }
+          }
+        }
+      },
+      "ActionResultOfLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/LoginResponseDTO"
+          }
+        }
+      },
+      "ActionResultOfPlayer": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Player"
+          }
+        }
+      },
+      "ActionResultOfPlayerCreateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PlayerCreateDTO"
+          }
+        }
+      },
+      "ActionResultOfPlayerDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PlayerDTO"
+          }
+        }
+      },
+      "ActionResultOfPlayerPatchDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PlayerPatchDTO"
+          }
+        }
+      },
+      "ActionResultOfPlayerUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/PlayerUpdateDTO"
+          }
+        }
+      },
+      "ActionResultOfTeamCreateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/TeamCreateDTO"
+          }
+        }
+      },
+      "ActionResultOfTeamDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/TeamDTO"
+          }
+        }
+      },
+      "ActionResultOfTeamUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/TeamUpdateDTO"
+          }
+        }
+      },
+      "ActionResultOfUserDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResult"
+          },
+          "value": {
+            "$ref": "#/components/schemas/UserDTO"
+          }
+        }
+      },
+      "AggregateException": {
+        "type": "object",
+        "properties": {
+          "innerExceptions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Exception"
+            }
+          },
+          "message": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "targetSite": {
+            "$ref": "#/components/schemas/MethodBase"
+          },
+          "data": {
+            "type": [
+              "null",
+              "object"
+            ]
+          },
+          "innerException": {
+            "$ref": "#/components/schemas/Exception"
+          },
+          "helpLink": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "source": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "hResult": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "stackTrace": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "Exception": {
+        "type": "object",
+        "properties": {
+          "targetSite": {
+            "$ref": "#/components/schemas/MethodBase"
+          },
+          "message": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "data": {
+            "type": [
+              "null",
+              "object"
+            ]
+          },
+          "innerException": {
+            "$ref": "#/components/schemas/Exception"
+          },
+          "helpLink": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "source": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "hResult": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "stackTrace": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "IFormFile": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "format": "binary"
+      },
+      "LoginRequestDTO": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "password": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "LoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "userDTO": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/UserDTO"
+              }
+            ]
+          }
+        }
+      },
+      "MethodBase": { },
+      "Player": {
+        "required": [
+          "name",
+          "teamId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dominicanId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "position": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "teamId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "team": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Team"
+              }
+            ]
+          }
+        }
+      },
+      "PlayerCreateDTO": {
+        "required": [
+          "name",
+          "dominicanId"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dominicanId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "position": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "teamId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "PlayerDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dominicanId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "position": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "teamId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "team": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Team"
+              }
+            ]
+          }
+        }
+      },
+      "PlayerPatchDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dominicanId": {
+            "maxLength": 12,
+            "minLength": 9,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dateOfBirth": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date"
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "position": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "teamId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "PlayerUpdateDTO": {
+        "required": [
+          "name",
+          "dominicanId"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dominicanId": {
+            "maxLength": 12,
+            "minLength": 9,
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "position": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "teamId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "RegisterRequestDTO": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "email": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "password": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "role": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "TaskCreationOptions": {
+        "type": "integer"
+      },
+      "TaskOfActionResultOfIEnumerableOfPlayerDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfIEnumerableOfPlayerDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfIEnumerableOfTeamDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfIEnumerableOfTeamDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfLoginResponseDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfLoginResponseDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfPlayer": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfPlayer"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfPlayerCreateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfPlayerCreateDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfPlayerDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfPlayerDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfPlayerPatchDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfPlayerPatchDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfPlayerUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfPlayerUpdateDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfTeamCreateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfTeamCreateDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfTeamDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfTeamDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfTeamUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfTeamUpdateDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskOfActionResultOfUserDTO": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/ActionResultOfUserDTO"
+          },
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/AggregateException"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "isCanceled": {
+            "type": "boolean"
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "isCompletedSuccessfully": {
+            "type": "boolean"
+          },
+          "creationOptions": {
+            "$ref": "#/components/schemas/TaskCreationOptions"
+          },
+          "asyncState": { },
+          "isFaulted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TaskStatus": {
+        "type": "integer"
+      },
+      "Team": {
+        "required": [
+          "teamName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "teamName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "fieldAddress": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "TeamCreateDTO": {
+        "required": [
+          "teamName"
+        ],
+        "type": "object",
+        "properties": {
+          "teamName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "fieldAddress": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "TeamDTO": {
+        "type": "object",
+        "properties": {
+          "teamName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "fieldAddress": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "TeamUpdateDTO": {
+        "required": [
+          "teamName"
+        ],
+        "type": "object",
+        "properties": {
+          "teamName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "fieldAddress": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "email": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "role": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Players"
+    },
+    {
+      "name": "Teams"
+    }
+  ]
+}
